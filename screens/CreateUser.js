@@ -50,7 +50,11 @@ const UserList = (props) => {
         />
       </View>
       <View>
-        <Button title="Save User" onPress={() => saveNewUser()} />
+        <Button
+          title="Save User"
+          color="#008000"
+          onPress={() => saveNewUser()}
+        />
       </View>
     </ScrollView>
   );
