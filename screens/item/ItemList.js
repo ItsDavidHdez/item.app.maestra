@@ -34,7 +34,7 @@ const UserList = (props) => {
             key={key}
             bottomDivider
             onPress={() => {
-              props.navigation.navigate("ItemDetail", {
+              props.navigation.navigate("ItemDetails", {
                 itemId: item.id,
               });
             }}

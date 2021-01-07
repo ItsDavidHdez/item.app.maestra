@@ -8,6 +8,7 @@ import CreateUser from "./screens/CreateUser";
 import UserList from "./screens/UserList";
 import CreateItem from "./screens/item/CreateItem";
 import ItemList from "./screens/item/ItemList";
+import ItemDetails from "./screens/item/ItemDetails";
 
 const Stack = createStackNavigator();
 
@@ -39,6 +40,11 @@ const MyStack = () => {
         name="UserDetails"
         component={UserDetails}
         options={{ title: "User details" }}
+      />
+      <Stack.Screen
+        name="ItemDetails"
+        component={ItemDetails}
+        options={{ title: "Item details" }}
       />
     </Stack.Navigator>
   );
