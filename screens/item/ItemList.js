@@ -23,9 +23,9 @@ const UserList = (props) => {
     });
   }, []);
 
-  console.log(items);
-
   const profilePhoto = (item) => {
+    // const cadena = item.photo.slice(-1, -3);
+    // console.log(cadena);
     if (item.photo === undefined) {
       return "https://previews.123rf.com/images/suslo/suslo1401/suslo140100021/25250116-bright-dibujo-simple-l%C3%A1piz-sobre-fondo-blanco.jpg";
     }

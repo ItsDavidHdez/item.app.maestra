@@ -16,6 +16,12 @@ const UserList = (props) => {
     date: "",
   });
 
+  const profilePhoto = () => {
+    if (state.photo === "") {
+      return "https://previews.123rf.com/images/suslo/suslo1401/suslo140100021/25250116-bright-dibujo-simple-l%C3%A1piz-sobre-fondo-blanco.jpg";
+    }
+  };
+
   const saveNewUser = async () => {
     if (state.name === "") {
       alert("Plis typing the name");
@@ -30,7 +36,7 @@ const UserList = (props) => {
           unity: state.quantity,
           category: state.category,
           description: state.description,
-          photo: state.photo,
+          photo: profilePhoto(),
           date: state.date,
         });
         props.navigation.navigate("ItemList");
