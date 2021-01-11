@@ -8,19 +8,29 @@ const UserList = (props) => {
 
   useEffect(() => {
     firebase.db.collection("items").onSnapshot((querySnapshot) => {
-      const items = [];
+      const newItems = [];
       querySnapshot.docs.forEach((doc) => {
-        const { name, quantity, unity } = doc.data();
-        items.push({
+        const { name, quantity, unity, photo } = doc.data();
+        newItems.push({
           id: doc.id,
           name,
           quantity,
           unity,
+          photo,
         });
       });
-      setItems(items);
+      setItems(newItems);
     });
   }, []);
+
+  console.log(items);
+
+  const profilePhoto = (item) => {
+    if (item.photo === undefined) {
+      return "https://previews.123rf.com/images/suslo/suslo1401/suslo140100021/25250116-bright-dibujo-simple-l%C3%A1piz-sobre-fondo-blanco.jpg";
+    }
+    return item.photo;
+  };
 
   return (
     <ScrollView>
@@ -42,8 +52,9 @@ const UserList = (props) => {
             <ListItem.Chevron />
             <Avatar
               rounded
+              key={key}
               source={{
-                uri: "https://assets.vg247.com/current//2018/04/spiderman.jpg",
+                uri: profilePhoto(item),
               }}
             />
             <ListItem.Content>
