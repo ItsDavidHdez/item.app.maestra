@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { View, Button, TextInput, ScrollView, StyleSheet } from "react-native";
+import {
+  View,
+  Button,
+  TextInput,
+  ScrollView,
+  StyleSheet,
+  Image,
+} from "react-native";
 
 const CreateCompany = (props) => {
   const [state, setState] = useState({
@@ -14,12 +21,48 @@ const CreateCompany = (props) => {
     updated_at: "",
   });
 
+  const [image, setImage] = useState("");
+
+  const openGalery = () => {
+    console.log("Open galery");
+  };
+
+  const checkImage = () => {
+    if (image) {
+      return (
+        <Image style={{ width: 300, height: 300 }} source={{ uri: image }} />
+      );
+    }
+    return null;
+  };
+
+  const saveNewCompany = async () => {
+    if (state.name === "" || state.email === "") {
+      alert("Plis typing in the required fields");
+    } else {
+      try {
+        await firebase.db.collection("companies").add({
+          name: state.name,
+          email: state.email,
+          address: state.address,
+          phone: state.phone,
+          description: state.description,
+          photo: state.photo,
+        });
+        props.navigation.navigate("UserList");
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
   const handleChangeText = (name, value) => {
     setState({ ...state, [name]: value });
   };
 
   return (
     <ScrollView style={styles.container}>
+      <View>{checkImage()}</View>
       <View style={styles.inputGroup}>
         <TextInput
           placeholder="Name"
@@ -28,7 +71,7 @@ const CreateCompany = (props) => {
       </View>
       <View style={styles.inputGroup}>
         <TextInput
-          placeholder="Email User"
+          placeholder="Email"
           onChangeText={(value) => handleChangeText("email", value)}
         />
       </View>
@@ -55,6 +98,7 @@ const CreateCompany = (props) => {
           placeholder="Photo"
           onChangeText={(value) => handleChangeText("photo", value)}
         />
+        <Button title="Select a image" onPress={() => openGalery()} />
       </View>
       <View>
         <Button

@@ -7,6 +7,8 @@ import UserDetails from "./screens/UserDetails";
 import CreateUser from "./screens/CreateUser";
 import UserList from "./screens/UserList";
 import CreateCompany from "./screens/company/CreateCompany";
+import CompanyDetails from "./screens/company/CompanyDetails";
+import CompanyList from "./screens/company/CompanyList";
 
 const Stack = createStackNavigator();
 
@@ -17,6 +19,16 @@ const MyStack = () => {
         name="CreateCompany"
         component={CreateCompany}
         options={{ title: "Create Company" }}
+      />
+      <Stack.Screen
+        name="CompanyList"
+        component={CompanyList}
+        options={{ title: "Company List" }}
+      />
+      <Stack.Screen
+        name="CompanyDetails"
+        component={CompanyDetails}
+        options={{ title: "Company Details" }}
       />
       <Stack.Screen
         name="UserList"
