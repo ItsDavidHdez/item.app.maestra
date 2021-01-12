@@ -6,12 +6,24 @@ import { createStackNavigator } from "@react-navigation/stack";
 import UserDetails from "./screens/UserDetails";
 import CreateUser from "./screens/CreateUser";
 import UserList from "./screens/UserList";
+import Login from "./screens/login/Login";
+import Register from "./screens/login/Register";
 
 const Stack = createStackNavigator();
 
 const MyStack = () => {
   return (
     <Stack.Navigator>
+      <Stack.Screen
+        name="Register"
+        component={Register}
+        options={{ title: Register }}
+      />
+      <Stack.Screen
+        name="Login"
+        component={Login}
+        options={{ title: "Login" }}
+      />
       <Stack.Screen
         name="UserList"
         component={UserList}
