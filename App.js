@@ -6,12 +6,18 @@ import { createStackNavigator } from "@react-navigation/stack";
 import UserDetails from "./screens/UserDetails";
 import CreateUser from "./screens/CreateUser";
 import UserList from "./screens/UserList";
+import CreateCompany from "./screens/company/CreateCompany";
 
 const Stack = createStackNavigator();
 
 const MyStack = () => {
   return (
     <Stack.Navigator>
+      <Stack.Screen
+        name="CreateCompany"
+        component={CreateCompany}
+        options={{ title: "Create Company" }}
+      />
       <Stack.Screen
         name="UserList"
         component={UserList}
