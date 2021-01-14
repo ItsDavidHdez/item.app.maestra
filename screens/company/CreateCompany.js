@@ -23,8 +23,9 @@ const CreateCompany = (props) => {
 
   const [image, setImage] = useState("");
 
-  const openGalery = () => {
-    console.log("Open galery");
+  const openGalery = async () => {
+    const { status } = await Permissions.askAsync();
+    console.log(Permissions);
   };
 
   const checkImage = () => {
