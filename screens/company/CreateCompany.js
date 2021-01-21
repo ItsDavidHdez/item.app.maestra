@@ -7,9 +7,11 @@ import {
   StyleSheet,
   Image,
 } from "react-native";
+import firebase from "../../database/firebase";
 
 const CreateCompany = (props) => {
   const [state, setState] = useState({
+    id: "",
     name: "",
     email: "",
     address: "",
@@ -21,21 +23,21 @@ const CreateCompany = (props) => {
     updated_at: "",
   });
 
-  const [image, setImage] = useState("");
+  // const [image, setImage] = useState("");
 
-  const openGalery = async () => {
-    const { status } = await Permissions.askAsync();
-    console.log(Permissions);
-  };
+  // const openGalery = async () => {
+  //   const { status } = await Permissions.askAsync();
+  //   console.log(Permissions);
+  // };
 
-  const checkImage = () => {
-    if (image) {
-      return (
-        <Image style={{ width: 300, height: 300 }} source={{ uri: image }} />
-      );
-    }
-    return null;
-  };
+  // const checkImage = () => {
+  //   if (image) {
+  //     return (
+  //       <Image style={{ width: 300, height: 300 }} source={{ uri: image }} />
+  //     );
+  //   }
+  //   return null;
+  // };
 
   const saveNewCompany = async () => {
     if (state.name === "" || state.email === "") {
@@ -50,7 +52,7 @@ const CreateCompany = (props) => {
           description: state.description,
           photo: state.photo,
         });
-        props.navigation.navigate("UserList");
+        props.navigation.navigate("CompanyDetails");
       } catch (error) {
         console.error(error);
       }
@@ -63,7 +65,7 @@ const CreateCompany = (props) => {
 
   return (
     <ScrollView style={styles.container}>
-      <View>{checkImage()}</View>
+      {/* <View>{checkImage()}</View> */}
       <View style={styles.inputGroup}>
         <TextInput
           placeholder="Name"
@@ -79,7 +81,7 @@ const CreateCompany = (props) => {
       <View style={styles.inputGroup}>
         <TextInput
           placeholder="Address"
-          onChangeText={(value) => handleChangeText("phone", value)}
+          onChangeText={(value) => handleChangeText("address", value)}
         />
       </View>
       <View style={styles.inputGroup}>
@@ -99,7 +101,7 @@ const CreateCompany = (props) => {
           placeholder="Photo"
           onChangeText={(value) => handleChangeText("photo", value)}
         />
-        <Button title="Select a image" onPress={() => openGalery()} />
+        {/* <Button title="Select a image" onPress={() => openGalery()} /> */}
       </View>
       <View>
         <Button

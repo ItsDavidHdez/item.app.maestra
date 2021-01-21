@@ -16,11 +16,6 @@ const MyStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="CreateCompany"
-        component={CreateCompany}
-        options={{ title: "Create Company" }}
-      />
-      <Stack.Screen
         name="CompanyList"
         component={CompanyList}
         options={{ title: "Company List" }}
@@ -29,6 +24,11 @@ const MyStack = () => {
         name="CompanyDetails"
         component={CompanyDetails}
         options={{ title: "Company Details" }}
+      />
+      <Stack.Screen
+        name="CreateCompany"
+        component={CreateCompany}
+        options={{ title: "Create Company" }}
       />
       <Stack.Screen
         name="UserList"

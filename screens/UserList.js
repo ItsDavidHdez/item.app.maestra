@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, ScrollView, Button } from "react-native";
+import { ScrollView, Button } from "react-native";
 import { ListItem, Avatar } from "react-native-elements";
 import firebase from "../database/firebase";
 
@@ -37,6 +37,7 @@ const UserList = (props) => {
               props.navigation.navigate("UserDetails", {
                 userId: user.id,
               });
+              alert(user.id);
             }}
           >
             <ListItem.Chevron />
