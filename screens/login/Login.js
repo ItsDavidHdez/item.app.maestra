@@ -7,31 +7,51 @@ import {
   StyleSheet,
   Button,
 } from "react-native";
+import * as firebase from "firebase";
 
-const Login = () => {
+const Login = (props) => {
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
 
+  const handleChangeText = (name, value) => {
+    setUser({ ...user, [name]: value });
+  };
+
+  const auth = (email, password) => {
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then((data) => console.log(data))
+      .catch(() => props.navigation.navigate("Register"));
+  };
+
   return (
     <ScrollView style={styles.container}>
-      <ScrollView>
-        <Text>Email</Text>
-        <View>
-          <TextInput value={user.email} />
-        </View>
+      <Text style={styles.inputTitle}>Email</Text>
+      <View>
+        <TextInput
+          style={styles.input}
+          value={user.email}
+          onChangeText={(value) => handleChangeText("email", value)}
+        />
+      </View>
+      <Text style={styles.inputTitle}>Password</Text>
+      <View>
+        <TextInput
+          style={styles.input}
+          value={user.password}
+          onChangeText={(value) => handleChangeText("password", value)}
+        />
+      </View>
+      <ScrollView style={styles.button}>
+        <Button title="Login" onPress={() => auth(user.email, user.password)} />
       </ScrollView>
-      <ScrollView>
-        <Text>Password</Text>
-        <View>
-          <TextInput value={user.password} />
-        </View>
-      </ScrollView>
-      <ScrollView>
+      <ScrollView style={styles.button}>
         <Button title="Forgot your password?" />
       </ScrollView>
-      <ScrollView>
+      <ScrollView style={styles.button}>
         <Button title="You don't have a account? Register!" />
       </ScrollView>
     </ScrollView>
@@ -42,6 +62,26 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 35,
+  },
+
+  inputTitle: {
+    fontSize: 10,
+  },
+
+  input: {
+    borderBottomColor: "#8A8F9E",
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    height: 40,
+    fontSize: 15,
+    color: "#161F3D",
+    marginBottom: 2,
+  },
+
+  button: {
+    marginHorizontal: 30,
+    borderRadius: 4,
+    height: 52,
+    // alignItems: "center",
   },
 });
 
