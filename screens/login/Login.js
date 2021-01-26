@@ -23,7 +23,10 @@ const Login = (props) => {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then((data) => console.log(data))
+      .then((data) => {
+        alert("Log in sucessful");
+        props.navigation.navigate("Home");
+      })
       .catch(() => props.navigation.navigate("Register"));
   };
 
@@ -81,7 +84,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 30,
     borderRadius: 4,
     height: 52,
-    // alignItems: "center",
   },
 });
 
