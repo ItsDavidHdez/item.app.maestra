@@ -27,7 +27,12 @@ const Login = (props) => {
         alert("Log in sucessful");
         props.navigation.navigate("Home");
       })
-      .catch(() => props.navigation.navigate("Register"));
+      .catch(() => {
+        alert("Invalid email or password, try again");
+        if (user.email === "" || user.password === "") {
+          alert("Empty fields");
+        }
+      });
   };
 
   return (
@@ -43,6 +48,7 @@ const Login = (props) => {
       <Text style={styles.inputTitle}>Password</Text>
       <View>
         <TextInput
+          secureTextEntry={true}
           style={styles.input}
           value={user.password}
           onChangeText={(value) => handleChangeText("password", value)}
@@ -55,7 +61,10 @@ const Login = (props) => {
         <Button title="Forgot your password?" />
       </ScrollView>
       <ScrollView style={styles.button}>
-        <Button title="You don't have a account? Register!" />
+        <Button
+          title="You don't have a account? Register!"
+          onPress={() => props.navigation.navigate("Register")}
+        />
       </ScrollView>
     </ScrollView>
   );

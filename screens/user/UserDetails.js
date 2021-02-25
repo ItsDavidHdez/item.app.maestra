@@ -8,7 +8,7 @@ import {
   ActivityIndicator,
   Alert,
 } from "react-native";
-import firebase from "../database/firebase";
+import firebase from "../../database/firebase";
 
 const UserDetails = (props) => {
   const initialState = {

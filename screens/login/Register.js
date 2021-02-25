@@ -100,6 +100,7 @@ const Login = (props) => {
         <TextInput
           value={userRegister.password}
           onChangeText={(value) => handleChangeText("password", value)}
+          secureTextEntry={true}
         />
       </View>
       <Text>Phone</Text>
